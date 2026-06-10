@@ -562,5 +562,11 @@ async function startServer() {
     console.log(`🗄️  قاعدة البيانات: ${path.resolve(DB_PATH)}`);
   });
 }
+// أضف هذا السطر بعد تعريف app
+app.use(express.static(path.join(__dirname, 'public'))); // افترضت أن ملفاتك في مجلد اسمه public
 
+// أضف هذا المسار ليفتح ملف index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 startServer();
